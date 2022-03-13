@@ -12,14 +12,14 @@ services:
   openvpn-udp:
     <<: *defaults
     container_name: openvpn-udp
-    command: "ovpn_run --cipher AES-256-CBC --keysize 256"
+    command: "ovpn_run"
     ports:
      - "1194:1194/udp"
 
   openvpn-tcp:
     <<: *defaults
     container_name: openvpn-tcp
-    command: "ovpn_run --cipher AES-256-CBC --keysize 256 --proto tcp"
+    command: "ovpn_run --proto tcp"
     ports:
      - "1194:1194/tcp"
 
