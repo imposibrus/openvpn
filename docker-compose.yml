@@ -1,0 +1,26 @@
+version: '2'
+
+x-defaults: &defaults
+  cap_add:
+   - NET_ADMIN
+  image: kylemanna/openvpn
+  restart: always
+  volumes:
+   - ./conf:/etc/openvpn
+
+services:
+  openvpn-udp:
+    <<: *defaults
+    container_name: openvpn-udp
+    command: "ovpn_run --cipher AES-256-CBC --keysize 256"
+    ports:
+     - "1194:1194/udp"
+
+  openvpn-tcp:
+    <<: *defaults
+    container_name: openvpn-tcp
+    command: "ovpn_run --cipher AES-256-CBC --keysize 256 --proto tcp"
+    ports:
+     - "1194:1194/tcp"
+
+
